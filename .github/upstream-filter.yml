@@ -1,0 +1,98 @@
+# Per-service upstream filter config (ADR-038), planted at fork initialization
+# with <service> substituted from the upstream repository name.
+# Every upstream top-level entry, testing/ entry, root pom profile, and
+# .fossa.yml module must appear here: the engine halts rather than guess.
+# Entries absent from a given upstream tree are inert, so this file carries the
+# superset of the conventional OSDU service shape. A service that deviates
+# maintains its own copy of this file on the fork's main branch.
+service: search
+
+top_level:
+  .config: keep
+  .dockerignore: keep
+  .editorconfig: keep
+  .envrc.template: keep
+  .fossa.yml: keep
+  .gitattributes: keep
+  .gitignore: keep
+  .gitlab: strip
+  .gitlab-ci.yml: strip
+  .mvn: keep
+  .sonarlint: keep
+  .trufflehog-exclude: strip
+  LICENSE: keep
+  NOTICE: keep
+  README.md: strip
+  docs: keep
+  pom.xml: keep
+  publish.yml: strip
+  search-acceptance-test: keep
+  search-core: keep
+  search-core-plus: strip
+  lombok.config: keep
+  schemathesis-tests: strip
+  skaffold.yaml: strip
+
+testing:
+  .gitignore: keep
+  readme.md: keep
+  INTEGRATION-TESTS.md: keep
+  README.md: keep
+  maven: keep
+  pom.xml: keep
+  search-test-core: keep
+  search-test-azure: fork
+  search-test-aws: strip
+  search-test-baremetal: strip
+  search-test-core-plus: strip
+  search-test-gc: strip
+  search-test-gcp: strip
+  search-test-ibm: strip
+  search-test-jdbc: strip
+
+profiles:
+  Default: keep
+  core: keep
+  azure: inject
+  aws: strip
+  gc: strip
+  gcp: strip
+  ibm: strip
+
+fossa_modules:
+  os-search: keep
+  search: keep
+  search-service: keep
+  search-core: keep
+  search-core-plus: strip
+  search-azure: strip
+  search-aws: strip
+  search-gc: strip
+  search-gcp: strip
+  search-ibm: strip
+  search-jdbc: strip
+
+expected_kept:
+  - pom.xml
+  - search-core
+  - testing/search-test-core
+
+expected_absent:
+  - provider
+  - devops
+  - search-core-plus
+  - .gitlab-ci.yml
+  - testing/search-test-azure
+  - testing/search-test-aws
+  - testing/search-test-core-plus
+
+inject_root_pom_azure_profile: |
+      <profile>
+        <id>azure</id>
+        <modules>
+          <module>provider/search-azure</module>
+        </modules>
+      </profile>
+
+inject_testing_pom_azure_module: |
+      <module>search-test-azure</module>

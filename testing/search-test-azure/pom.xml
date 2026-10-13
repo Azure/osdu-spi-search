@@ -30,7 +30,7 @@
     <version>0.31.0-SNAPSHOT</version>
 
     <properties>
-        <cucumber.version>1.2.5</cucumber.version>
+        <cucumber.version>1.2.6</cucumber.version>
         <argLine>
             --add-opens=java.base/java.util=ALL-UNNAMED
             --add-opens java.base/java.lang=ALL-UNNAMED

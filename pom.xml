@@ -408,27 +408,14 @@
             </activation>
             <modules>
                 <module>search-core</module>
-                <module>search-core-plus</module>
             </modules>
         </profile>
-        <profile>
-            <id>azure</id>
-            <modules>
-                <module>provider/search-azure</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>ibm</id>
-            <modules>
-                <module>provider/search-ibm</module>
-            </modules>
-        </profile>
-        <profile>
-            <id>gc</id>
-            <modules>
-                <module>provider/search-gc</module>
-            </modules>
-        </profile>
+    <profile>
+      <id>azure</id>
+      <modules>
+        <module>provider/search-azure</module>
+      </modules>
+    </profile>
     </profiles>
 
     <build>

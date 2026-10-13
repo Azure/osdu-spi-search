@@ -32,10 +32,7 @@
 
 	<modules>
 		<module>search-test-core</module>
-		<module>search-test-azure</module>
-		<module>search-test-gc</module>
-		<module>search-test-ibm</module>
-		<module>search-test-baremetal</module>
+    <module>search-test-azure</module>
     </modules>
 
 	<properties>

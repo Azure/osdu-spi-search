@@ -30,7 +30,7 @@
     <version>0.31.0-SNAPSHOT</version>
 
     <properties>
-        <cucumber.version>1.2.5</cucumber.version>
+        <cucumber.version>1.2.6</cucumber.version>
         <argLine>
             --add-opens=java.base/java.util=ALL-UNNAMED
             --add-opens java.base/java.lang=ALL-UNNAMED
@@ -91,7 +91,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <version>1.2.13</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -116,12 +116,12 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.90.Final</version>
+            <version>4.1.139.Final</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-transport</artifactId>
-            <version>4.1.90.Final</version>
+            <version>4.1.139.Final</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>

@@ -20,6 +20,10 @@ import org.opengroup.osdu.azure.util.AzureServicePrincipal;
 class JwtTokenUtil {
 
     static public String getAccessToken() throws Exception {
+        String suppliedToken = System.getProperty("INTEGRATION_TESTER_ACCESS_TOKEN", System.getenv("INTEGRATION_TESTER_ACCESS_TOKEN"));
+        if (suppliedToken != null && !suppliedToken.isBlank()) {
+            return suppliedToken;
+        }
         String sp_id = System.getProperty("INTEGRATION_TESTER", System.getenv("INTEGRATION_TESTER"));
         String sp_secret = System.getProperty("AZURE_TESTER_SERVICEPRINCIPAL_SECRET", System.getenv("AZURE_TESTER_SERVICEPRINCIPAL_SECRET"));
         String tenant_id = System.getProperty("AZURE_AD_TENANT_ID", System.getenv("AZURE_AD_TENANT_ID"));

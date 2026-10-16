@@ -2,4 +2,31 @@ schemaVersion: 3
 service:
   name: search
   archetype: java-maven-azure
-tests: {}
+tests:
+  acceptance:
+    type: maven
+    path: search-acceptance-test
+    mavenArguments: ["-Dcucumber.filter.tags=(@default)or(@health)or(@SpatialLongitudeExtendedRange)", test]
+    timeoutMinutes: 45
+    bindings:
+      HOST: { source: gateway }
+      DATA_PARTITION_ID: { source: partition }
+      DEFAULT_DATA_PARTITION_ID_TENANT2: { source: static, value: non-exist }
+      ENTITLEMENTS_DOMAIN: { source: domain }
+      PRIVILEGED_USER_TOKEN: { source: token }
+  integration:
+    type: maven
+    path: testing
+    mavenArguments: [-pl, search-test-azure, -am, verify]
+    timeoutMinutes: 40
+    bindings:
+      HOST: { source: gateway }
+      SEARCH_HOST: { source: gateway, suffix: /api/search/v2/ }
+      STORAGE_HOST: { source: gateway, suffix: /api/storage/v2/ }
+      INDEXER_HOST: { source: gateway, suffix: /api/indexer/v2/ }
+      DEFAULT_DATA_PARTITION_ID_TENANT1: { source: partition }
+      DEFAULT_DATA_PARTITION_ID_TENANT2: { source: static, value: non-exist }
+      ENTITLEMENTS_DOMAIN: { source: domain }
+      LEGAL_TAG: { source: legalTag }
+      OTHER_RELEVANT_DATA_COUNTRIES: { source: static, value: US }
+      INTEGRATION_TESTER_ACCESS_TOKEN: { source: token }

@@ -106,7 +106,7 @@ public class SearchApiTest {
         assertEquals(1, apiResponse.getTotalCount());
         assertEquals(1, apiResponse.getResults().size());
         assertEquals("tenant1:welldb:well-33fe05e1-df20-49d9-bd63-74cf750a206f", apiResponse.getResults().get(0).get("_id"));
-        assertEquals(HttpServletResponse.SC_OK, response.getStatusCodeValue());
+        assertEquals(HttpServletResponse.SC_OK, response.getStatusCode().value());
     }
 
     @Test
@@ -127,7 +127,7 @@ public class SearchApiTest {
         assertEquals(0, apiResponse.getAggregations().size());
         assertEquals(1, apiResponse.getResults().size());
         assertEquals("tenant1:welldb:well-33fe05e1-df20-49d9-bd63-74cf750a206f", apiResponse.getResults().get(0).get("_id"));
-        assertEquals(HttpServletResponse.SC_OK, response.getStatusCodeValue());
+        assertEquals(HttpServletResponse.SC_OK, response.getStatusCode().value());
     }
 
     @Test
@@ -161,7 +161,7 @@ public class SearchApiTest {
         assertEquals(1, apiResponse.getTotalCount());
         assertEquals(1, apiResponse.getResults().size());
         assertEquals("tenant1:welldb:well-33fe05e1-df20-49d9-bd63-74cf750a206f", apiResponse.getResults().get(0).get("_id"));
-        assertEquals(HttpServletResponse.SC_OK, response.getStatusCodeValue());
+        assertEquals(HttpServletResponse.SC_OK, response.getStatusCode().value());
     }
 
     @Test
@@ -196,7 +196,7 @@ public class SearchApiTest {
         assertEquals(1, apiResponse.getTotalCount());
         assertEquals(1, apiResponse.getResults().size());
         assertEquals("tenant1:welldb:well-33fe05e1-df20-49d9-bd63-74cf750a206f", apiResponse.getResults().get(0).get("_id"));
-        assertEquals(HttpServletResponse.SC_OK, response.getStatusCodeValue());
+        assertEquals(HttpServletResponse.SC_OK, response.getStatusCode().value());
     }
 
     @Test
@@ -228,7 +228,7 @@ public class SearchApiTest {
         assertEquals(1, apiResponse.getTotalCount());
         assertEquals(1, apiResponse.getResults().size());
         assertEquals("tenant1:welldb:well-33fe05e1-df20-49d9-bd63-74cf750a206f", apiResponse.getResults().get(0).get("_id"));
-        assertEquals(HttpServletResponse.SC_OK, response.getStatusCodeValue());
+        assertEquals(HttpServletResponse.SC_OK, response.getStatusCode().value());
     }
 
     @Test

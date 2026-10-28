@@ -31,7 +31,9 @@
 
     <properties>
         <!-- Core Dependencies -->
-        <core-lib-azure.version>3.0.4</core-lib-azure.version>
+        <core-lib-azure.version>4.0.0</core-lib-azure.version>
+        <!-- Root pom pins lettuce explicitly, which beats the core-lib-azure BOM; match the library here -->
+        <lettuce.version>7.9.0.RELEASE</lettuce.version>
         <gson.version>2.11.0</gson.version>
 
         <!-- Plugin Versions -->
@@ -40,21 +42,6 @@
 
     <dependencyManagement>
         <dependencies>
-                  <dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-bom</artifactId>
-        <version>${netty.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-<!-- CVE-2021-0341 | HIGH | com.squareup.okhttp3:okhttp-->
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp-bom</artifactId>
-                <version>4.9.3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <!-- Core Azure Library -->
             <dependency>
                 <groupId>org.opengroup.osdu</groupId>

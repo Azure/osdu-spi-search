@@ -36,7 +36,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <project.main.basedir>${project.parent.basedir}</project.main.basedir>
-    <core-plus.version>0.27.1</core-plus.version>
+    <core-plus.version>0.27.3</core-plus.version>
   </properties>
 
   <dependencies>

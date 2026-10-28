@@ -21,17 +21,23 @@ import static org.mockito.Mockito.when;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockedConstruction;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.opengroup.osdu.core.aws.v2.ssm.K8sLocalParameterProvider;
 import org.powermock.reflect.Whitebox;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class ElasticSettingServiceImplTest {
+
+    @Rule
+    public MockitoRule mockitoRule = MockitoJUnit.rule();
     
     @InjectMocks
     private ElasticSettingServiceImpl elasticSettingServiceImpl;

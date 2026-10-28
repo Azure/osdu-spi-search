@@ -1,0 +1,2 @@
+org.springframework.boot.EnvironmentPostProcessor=\
+org.opengroup.osdu.search.config.Jackson2HttpConvertersEnvironmentPostProcessor

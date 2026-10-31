@@ -30,7 +30,7 @@ top_level:
   search-core: keep
   search-core-plus: strip
   lombok.config: keep
-  schemathesis-tests: strip
+  schemathesis-tests: keep
   skaffold.yaml: strip
 
 testing:

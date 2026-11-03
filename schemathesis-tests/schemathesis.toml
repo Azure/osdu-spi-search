@@ -1,0 +1,55 @@
+seed = 42424242424424242
+workers = 1
+continue-on-failure = true
+request-timeout = 30.0
+hooks = "./hooks/hooks.py"
+# Tight kind/cursor patterns cause Hypothesis to filter most bodies
+# (tooling limitation, not an API defect). Same as legal/entitlements.
+suppress-health-check = ["filter_too_much"]
+
+[generation]
+mode = "all"
+# Shared CRS budget with legal/storage/entitlements (master used 500).
+# Raising this for query ops is tracked in
+# https://community.opengroup.org/osdu/platform/system/search-service/-/issues/515
+max-examples = 20
+# Spring MVC ignores undeclared query/header extras (returns 2xx). Do not
+# generate those mutations so negative_data_rejection stays enabled for real
+# schema violations (storage/entitlements).
+allow-extra-parameters = false
+
+[phases.stateful]
+enabled = false
+
+[phases.examples]
+enabled = true
+
+[phases.coverage]
+enabled = true
+
+[phases.fuzzing]
+enabled = true
+
+[reports.junit]
+path = "./output/junit/junit.xml"
+
+[reports.allure]
+path = "./output/allure/results"
+
+# Coverage on POST/DELETE query ops is slow (regex-backed kind/cursor +
+# Elasticsearch). Examples + fuzzing still run. Re-enable coverage in
+# https://community.opengroup.org/osdu/platform/system/search-service/-/issues/515
+[[operations]]
+include-path = "/query"
+include-method = "POST"
+phases = { coverage = { enabled = false } }
+
+[[operations]]
+include-path = "/query_with_cursor"
+include-method = "POST"
+phases = { coverage = { enabled = false } }
+
+[[operations]]
+include-path = "/query_with_cursor/{cursor}"
+include-method = "DELETE"
+phases = { coverage = { enabled = false } }

@@ -501,10 +501,7 @@
                                         <exclude>org.opengroup.osdu:search-core</exclude>
                                         <exclude>org.opengroup.osdu:search-core-plus</exclude>
                                         <exclude>org.opengroup.osdu:search-azure</exclude>
-                                        <exclude>org.opengroup.osdu:search-ibm</exclude>
                                         <exclude>org.opengroup.osdu:search-gc</exclude>
-                                        <!-- CSP (IBM): transitive SNAPSHOT via os-core-lib-ibm; drop when IBM migrates. -->
-                                        <exclude>org.opengroup.osdu:os-core-common-spring6</exclude>
                                     </excludes>
                                 </requireReleaseDeps>
                             </rules>

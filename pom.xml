@@ -500,7 +500,6 @@
                                         <exclude>org.opengroup.osdu:os-search</exclude>
                                         <exclude>org.opengroup.osdu:search-core</exclude>
                                         <exclude>org.opengroup.osdu:search-core-plus</exclude>
-                                        <exclude>org.opengroup.osdu:search-azure</exclude>
                                         <exclude>org.opengroup.osdu:search-gc</exclude>
                                     </excludes>
                                 </requireReleaseDeps>

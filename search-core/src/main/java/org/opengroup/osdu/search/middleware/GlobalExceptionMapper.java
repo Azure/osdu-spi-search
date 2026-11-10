@@ -14,11 +14,6 @@
 
 package org.opengroup.osdu.search.middleware;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import javassist.NotFoundException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -54,6 +49,12 @@ import jakarta.validation.ValidationException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.exc.UnrecognizedPropertyException;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
@@ -72,8 +73,10 @@ public class GlobalExceptionMapper extends ResponseEntityExceptionHandler {
         return this.getErrorResponse(e);
     }
 
-    @ExceptionHandler(JsonProcessingException.class)
-    protected ResponseEntity<Object> handleJsonProcessingException(JsonProcessingException e) {
+    // Jackson 3 (HTTP mapper) and Jackson 2 (Elasticsearch client) parsing errors; Jackson 2 ones are IOExceptions and
+    // would otherwise be mapped to 503 by handleIOException.
+    @ExceptionHandler({JacksonException.class, com.fasterxml.jackson.core.JsonProcessingException.class})
+    protected ResponseEntity<Object> handleJsonProcessingException(Exception e) {
         return this.getErrorResponse(
                 new AppException(HttpStatus.BAD_REQUEST.value(), "Invalid JSON format on the request", e.getMessage(), e));
     }
@@ -119,7 +122,7 @@ public class GlobalExceptionMapper extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHandlerMethodValidationException(
             HandlerMethodValidationException e, HttpHeaders headers, HttpStatusCode statusCode, WebRequest request) {
         List<String> errors = new ArrayList<>();
-        e.getAllValidationResults().forEach(result ->
+        e.getParameterValidationResults().forEach(result ->
                 result.getResolvableErrors().forEach(error -> errors.add(error.getDefaultMessage())));
         this.jaxRsDpsLogger.warning("Invalid parameters were given on search request", e);
         HttpStatus httpStatus = HttpStatus.resolve(org.apache.http.HttpStatus.SC_BAD_REQUEST);
@@ -215,7 +218,7 @@ public class GlobalExceptionMapper extends ResponseEntityExceptionHandler {
     }
 
     private ObjectNode getValidationResponse(List<String> errors) {
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new JsonMapper();
         ObjectNode node = mapper.createObjectNode();
         node.put("code", org.apache.http.HttpStatus.SC_BAD_REQUEST);
         node.put("reason", "Bad Request");

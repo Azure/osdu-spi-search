@@ -104,7 +104,15 @@ def _looks_like_index_field(value: object) -> bool:
 
 
 def _points_ok(points: object, minimum: int) -> bool:
-    return isinstance(points, list) and len(points) >= minimum and all(isinstance(p, dict) for p in points)
+    """Elasticsearch drops duplicate points, so the polygon needs ``minimum`` distinct ones.
+
+    The schema example repeats one point (numeric since springdoc 3), which the API rightly
+    rejects with "too few points defined for geo polygon query".
+    """
+    if not isinstance(points, list) or not all(isinstance(p, dict) for p in points):
+        return False
+    distinct = {(p.get("latitude"), p.get("longitude")) for p in points}
+    return len(distinct) >= minimum
 
 
 def _spatial_filter_ok(spatial_filter: object) -> bool:

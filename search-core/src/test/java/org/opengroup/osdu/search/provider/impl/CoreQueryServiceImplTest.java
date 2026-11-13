@@ -35,7 +35,8 @@ import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
 
 import com.fasterxml.jackson.core.exc.StreamConstraintsException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.io.StringReader;
@@ -111,7 +112,7 @@ public class CoreQueryServiceImplTest {
     private static final String indexName = "index";
     private static final String name = "name";
     private static final String text = "text";
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new JsonMapper();
 
     private final Point dummyPoint = getPoint(0.0, 0.0);
     private final List<Point> polygonPoints = getPolygonPoints(getPoint(0.0, 0.0), getPoint(0.0, 1.0), getPoint(1.0, 1.0), getPoint(1.0, 0.0));

@@ -657,6 +657,7 @@ public class SearchAfterQueryServiceImplTest {
 
         String cursor = sut.refreshCursorCache(searchResponse, true, cursorSettings);
         assertNotNull(cursor);
+        assertTrue(cursor.matches("[A-F0-9]{32}"));
     }
 
     @Test

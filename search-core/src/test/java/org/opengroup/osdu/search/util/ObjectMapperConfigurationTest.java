@@ -1,6 +1,6 @@
 package org.opengroup.osdu.search.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.opengroup.osdu.core.common.model.search.QueryRequest;
 

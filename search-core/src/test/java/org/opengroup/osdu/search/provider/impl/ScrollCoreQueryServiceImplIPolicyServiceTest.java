@@ -19,6 +19,7 @@
 package org.opengroup.osdu.search.provider.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.opengroup.osdu.search.config.SearchConfigurationProperties.POLICY_FEATURE_NAME;
@@ -302,9 +303,9 @@ public class ScrollCoreQueryServiceImplIPolicyServiceTest {
 		verify(client, Mockito.times(1)).search(searchRequestCaptor.capture(), eq((Type)Map.class));
 		SearchRequest capturedRequest = searchRequestCaptor.getValue();
 
-        assert capturedRequest.query() != null;
+        assertNotNull(capturedRequest.query());
         String actualSource = capturedRequest.query().toString();
-        assert searchRequest.query() != null;
+        assertNotNull(searchRequest.query());
         assertEquals(searchRequest.query().toString(), actualSource);
 	}
 }

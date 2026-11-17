@@ -31,7 +31,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import org.apache.http.ContentTooLongException;
@@ -223,8 +225,9 @@ public class ScrollCoreQueryServiceImpl extends CoreQueryBase implements IScroll
   String refreshCursorCache(String rawCursor, String userId) {
     if (rawCursor != null) {
       MessageDigest digest = getDigest();
-      digest.update(rawCursor.getBytes());
-      String hashCursor = DatatypeConverter.printHexBinary(digest.digest()).toUpperCase();
+      digest.update(rawCursor.getBytes(StandardCharsets.UTF_8));
+      String hashCursor =
+          DatatypeConverter.printHexBinary(Arrays.copyOf(digest.digest(), 16)).toUpperCase();
       this.cursorCache.put(
           hashCursor, CursorSettings.builder().cursor(rawCursor).userId(userId).build());
       return hashCursor;

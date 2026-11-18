@@ -206,8 +206,7 @@ public class ScrollCoreQueryServiceImpl extends CoreQueryBase implements IScroll
             .index(index)
             .allowNoIndices(true)
             .expandWildcards(ExpandWildcard.Open, ExpandWildcard.Closed)
-            .ignoreUnavailable(true)
-            .ignoreThrottled(true);
+            .ignoreUnavailable(true);
     searchSourceBuilder.searchType(SearchType.QueryThenFetch);
     searchSourceBuilder.batchedReduceSize(512L).ccsMinimizeRoundtrips(true);
 

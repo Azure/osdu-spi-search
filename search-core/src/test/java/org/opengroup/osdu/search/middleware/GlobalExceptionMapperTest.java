@@ -16,8 +16,8 @@ package org.opengroup.osdu.search.middleware;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.exc.UnrecognizedPropertyException;
+import tools.jackson.databind.node.ObjectNode;
 import jakarta.validation.ValidationException;
 import javassist.NotFoundException;
 import org.apache.http.HttpStatus;
@@ -186,7 +186,7 @@ public class GlobalExceptionMapperTest {
         ParameterValidationResult validationResult = mock(ParameterValidationResult.class);
         FieldError fieldError = new FieldError("searchApi", "cursor", "must not be null");
 
-        when(exception.getAllValidationResults()).thenReturn(List.of(validationResult));
+        when(exception.getParameterValidationResults()).thenReturn(List.of(validationResult));
         when(validationResult.getResolvableErrors()).thenReturn(List.of(fieldError));
 
         ResponseEntity<Object> response = sut.handleHandlerMethodValidationException(

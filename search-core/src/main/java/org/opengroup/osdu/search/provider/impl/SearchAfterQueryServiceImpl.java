@@ -27,6 +27,7 @@ import com.google.common.collect.Lists;
 import jakarta.inject.Inject;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.xml.bind.DatatypeConverter;
+import java.nio.charset.StandardCharsets;
 import org.apache.http.ContentTooLongException;
 import org.apache.http.HttpStatus;
 import org.opengroup.osdu.core.common.logging.JaxRsDpsLog;
@@ -49,6 +50,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -372,8 +374,9 @@ public class SearchAfterQueryServiceImpl extends CoreQueryBase implements ISearc
         String pitId = searchResponse.pitId();
         if (pitId != null) {
             MessageDigest digest = getDigest();
-            digest.update(pitId.getBytes());
-            String hashCursor = DatatypeConverter.printHexBinary(digest.digest()).toUpperCase();
+            digest.update(pitId.getBytes(StandardCharsets.UTF_8));
+            String hashCursor =
+                    DatatypeConverter.printHexBinary(Arrays.copyOf(digest.digest(), 16)).toUpperCase();
             List<FieldValue> searchAfterValues;
             HitsMetadata<Map<String, Object>> searchHits = searchResponse.hits();
             if (searchHits.hits() != null && !searchHits.hits().isEmpty()) {

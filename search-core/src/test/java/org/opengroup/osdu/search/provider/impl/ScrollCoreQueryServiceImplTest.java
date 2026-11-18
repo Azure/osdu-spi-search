@@ -369,6 +369,12 @@ public class ScrollCoreQueryServiceImplTest {
     public void refreshCursorCache() {
         String cursor = sut.refreshCursorCache(rawCursor, userId);
         assertNotNull(cursor);
+        assertTrue(cursor.matches("[A-F0-9]{32}"));
+    }
+
+    @Test
+    public void getDigest_usesSha256() {
+        assertEquals("SHA-256", sut.getDigest().getAlgorithm());
     }
 
     @Test

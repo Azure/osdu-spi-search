@@ -36,7 +36,7 @@ import org.opengroup.osdu.models.Setup;
 import org.opengroup.osdu.models.schema.PersistentSchemaTestIndex;
 import org.opengroup.osdu.util.Config;
 import org.opengroup.osdu.core.test.util.TestFileUtil;
-import org.opengroup.osdu.util.SearchTestConfig;
+
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
@@ -108,7 +108,6 @@ public class BaseSearchSteps {
     }
 
     public void initScenario(Scenario scenario) {
-        SearchTestConfig.updateEntitlementsDomainFromGroupId();
         this.scenario = scenario;
         headers = new HashMap<>();
         spatialFilter = new SpatialFilter();

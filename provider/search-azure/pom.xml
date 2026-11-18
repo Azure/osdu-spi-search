@@ -31,7 +31,7 @@
 
     <properties>
         <!-- Core Dependencies -->
-        <core-lib-azure.version>4.0.0</core-lib-azure.version>
+        <core-lib-azure.version>5.0.0</core-lib-azure.version>
         <!-- Root pom pins lettuce explicitly, which beats the core-lib-azure BOM; match the library here -->
         <lettuce.version>7.9.0.RELEASE</lettuce.version>
         <gson.version>2.11.0</gson.version>
@@ -45,7 +45,7 @@
             <!-- Core Azure Library -->
             <dependency>
                 <groupId>org.opengroup.osdu</groupId>
-                <artifactId>core-lib-azure</artifactId>
+                <artifactId>core-lib-azure-bom</artifactId>
                 <version>${core-lib-azure.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -90,10 +90,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-        </dependency>
 
         <!-- Azure Dependencies -->
         <dependency>
@@ -120,6 +116,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

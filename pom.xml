@@ -62,7 +62,7 @@
         <mockito.version>5.23.0</mockito.version>
         <!-- Empty placeholder so Surefire can late-replace @{argLine} (e.g. Jacoco); without it the literal @{argLine} is passed to the JVM and tests fail to start. -->
         <argLine></argLine>
-        <spring-boot.version>4.0.9</spring-boot.version>
+        <spring-boot.version>4.0.10</spring-boot.version>
         <lombok.version>1.18.42</lombok.version>
         <!-- Keep Surefire 3.3.1: 3.5.x writes @DisplayName into XML classname, which breaks EnforceTestExecution. -->
         <maven-surefire-plugin.version>3.3.1</maven-surefire-plugin.version>

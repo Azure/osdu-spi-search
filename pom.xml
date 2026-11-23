@@ -38,7 +38,7 @@
         <commons-compress.version>1.21</commons-compress.version>
         <os-core-common.version>10.0.1</os-core-common.version>
         <!-- Patched Tomcat 11 line. Explicit dependencyManagement is required (BOM import, no spring-boot-starter-parent). -->
-        <tomcat.version>11.0.27</tomcat.version>
+        <tomcat.version>11.0.29</tomcat.version>
         <!-- os-core-common 7.0.0 declares lettuce-core as provided; CVE-2025-58057 requires >= 7.5.2.RELEASE -->
         <lettuce.version>7.5.2.RELEASE</lettuce.version>
         <!-- lettuce-core 7.x requires Netty 4.2+; patched 4.2.x line.

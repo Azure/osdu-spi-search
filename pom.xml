@@ -43,7 +43,7 @@
         <lettuce.version>7.5.2.RELEASE</lettuce.version>
         <!-- lettuce-core 7.x requires Netty 4.2+; patched 4.2.x line.
              4.2.18.Final addresses High findings still present on 4.1.118 / 4.2.16. -->
-        <netty.version>4.2.19.Final</netty.version>
+        <netty.version>4.2.21.Final</netty.version>
         <!-- Jackson 3 is the application JSON mapper. Jackson 2 still arrives transitively (Elasticsearch client,
              swagger-core, resteasy, providers); jackson-core/databind 2.21.4 has HIGH CVEs fixed in 2.21.7.
              Import both Jackson BOMs ahead of spring-boot-dependencies so the whole Jackson 2 and 3 lines move. -->

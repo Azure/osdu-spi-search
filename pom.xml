@@ -55,7 +55,7 @@
         <guava.version>33.7.2-jre</guava.version>
         <elasticsearch-client.version>8.19.24</elasticsearch-client.version>
         <!-- Logback 1.6.5 fixes the SiftingAppender CVE; Spring Boot 4.0.9 still manages 1.5.x. -->
-        <logback.version>1.6.5</logback.version>
+        <logback.version>1.6.8</logback.version>
         <openapi.version>3.0.3</openapi.version>
         <swagger-core.version>2.2.47</swagger-core.version>
         <json-smart.version>2.6.0</json-smart.version>
